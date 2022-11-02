@@ -18,6 +18,7 @@ Expected Result:
 Actual Result:
 	the error 404 page is open: This page could not be found
 
+—————————————————————
 
 Defect 2 :  Search Page > Search c does not work correctly
 
@@ -40,6 +41,7 @@ Actual Result:
 	all notes that were visible before passing the test are visible
 	N2 == N1
 
+—————————————————————
 
 Defect 3 :  Search Page > Using the Search by Owner interferes with the Search by Text
 
@@ -58,6 +60,7 @@ Expected Result:
 Actual Result:
 	N2 == N1
 
+—————————————————————
 
 Defect 4 :  Profile Page > No possibility to Add a large Note (about 500 characters)
 
@@ -75,6 +78,8 @@ Expected Result:
 
 Actual Result:
 	the note does not appear in Previous Notes, 
+
+—————————————————————
 
 Defect 5 :  Profile Page > No message about note size limits
 
@@ -94,6 +99,7 @@ Actual Result:
 	the Submit button is active
 	and Limit Warning message does not appear
 
+—————————————————————
 
 Defect 6 :   No way to edit note:
 
