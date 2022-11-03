@@ -19,7 +19,7 @@ Actual Result:   the error 404 page is open: This page could not be found
 
 —————————————————————
 
-Defect 2 :  Search Page > Search c does not work correctly
+Defect 2 :  Search Page > Search by Owner does not work correctly
 
 Defect 2 note: since this is a test assignment we have only one user for all notes. This makes it difficult to identify the bug as we are not able to test with different users. Therefore, in this test, we use a user with a deliberately incorrect email
 
