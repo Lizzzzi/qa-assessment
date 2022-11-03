@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "3050c670-e479-4c7a-87a3-c323f6fef336",
+		"name": "API_hiring-qa-assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13577984"
+	},
+	"item": [
+		{
+			"name": "Backend",
+			"item": [
+				{
+					"name": "hello",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const respBody = pm.response.json();",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(respBody).to.eql(\"Hello world!\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://master.hiring-assignment.qa.c66.me:3001/v3/hello",
+							"protocol": "https",
+							"host": [
+								"master",
+								"hiring-assignment",
+								"qa",
+								"c66",
+								"me"
+							],
+							"port": "3001",
+							"path": [
+								"v3",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const respBody = pm.response.json();",
+									"postman.setEnvironmentVariable(\"token\", respBody.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"tester@shair.co\", \"password\": \"secure-password-for-assessment\" }"
+						},
+						"url": {
+							"raw": "https://master.hiring-assignment.qa.c66.me:3001/v3/login",
+							"protocol": "https",
+							"host": [
+								"master",
+								"hiring-assignment",
+								"qa",
+								"c66",
+								"me"
+							],
+							"port": "3001",
+							"path": [
+								"v3",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postNote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const respBody = pm.response.json();",
+									"postman.setEnvironmentVariable(\"noteID\", respBody.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"text\": \"Sample note!\", \"userId\": \"4601760c-a44f-45d5-9593-28944875f17d\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.hiring-assignment.qa.c66.me:3001/v3/note",
+							"protocol": "https",
+							"host": [
+								"master",
+								"hiring-assignment",
+								"qa",
+								"c66",
+								"me"
+							],
+							"port": "3001",
+							"path": [
+								"v3",
+								"note"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const respBody = pm.response.json();",
+									"pm.test(\"Note text matches\", function () {",
+									"    pm.expect(respBody.text).to.eql(\"Sample note!\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://master.hiring-assignment.qa.c66.me:3001/v3/note/{{noteID}}",
+							"protocol": "https",
+							"host": [
+								"master",
+								"hiring-assignment",
+								"qa",
+								"c66",
+								"me"
+							],
+							"port": "3001",
+							"path": [
+								"v3",
+								"note",
+								"{{noteID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const respBody = pm.response.json();",
+									"pm.test(\"User name\", function () {",
+									"    pm.expect(respBody.user.firstName + ' ' + respBody.user.lastName)",
+									"    .to.eql(\"John Doe\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://master.hiring-assignment.qa.c66.me:3001/v3/profile",
+							"protocol": "https",
+							"host": [
+								"master",
+								"hiring-assignment",
+								"qa",
+								"c66",
+								"me"
+							],
+							"port": "3001",
+							"path": [
+								"v3",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchNote",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"text\": \"Sample\", \"size\": 10, \"skip\": 0 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://master.hiring-assignment.qa.c66.me:3001/v3/search",
+							"protocol": "https",
+							"host": [
+								"master",
+								"hiring-assignment",
+								"qa",
+								"c66",
+								"me"
+							],
+							"port": "3001",
+							"path": [
+								"v3",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
